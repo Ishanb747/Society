@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Sahyadri Greens",
-    short_name: "Township",
+    short_name: "Sahyadri",
     description: "Maintenance, complaints and payments for your township.",
     start_url: "/home",
     display: "standalone",

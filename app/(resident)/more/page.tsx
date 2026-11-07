@@ -17,7 +17,7 @@ export default async function More() {
     db.notice.findMany({ orderBy: { publishedAt: "desc" } }),
   ]);
   return (
-    <div>
+    <div className="mx-auto w-full max-w-[640px]">
       <PageHeader title="More" eyebrow={user.name} />
 
       <Card>

@@ -20,12 +20,12 @@ export default async function Complaints() {
         <EmptyState title="No complaints yet" body="If something needs fixing, tell us here and follow it until it's done." action={<ButtonLink href="/complaints/new">Raise a complaint</ButtonLink>} />
       ) : (
         <>
-          {open.length > 0 && <div className="space-y-3">{open.map((c) => <ComplaintItem key={c.id} c={c} />)}</div>}
+          {open.length > 0 && <div className="grid gap-3 lg:grid-cols-2">{open.map((c) => <ComplaintItem key={c.id} c={c} />)}</div>}
           {open.length === 0 && <p className="text-fg-2">Nothing open right now.</p>}
           {past.length > 0 && (
             <>
               <SectionTitle>Earlier</SectionTitle>
-              <div className="space-y-3">{past.map((c) => <ComplaintItem key={c.id} c={c} />)}</div>
+              <div className="grid gap-3 lg:grid-cols-2">{past.map((c) => <ComplaintItem key={c.id} c={c} />)}</div>
             </>
           )}
         </>

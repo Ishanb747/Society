@@ -13,7 +13,7 @@ export function ResidentTabs({ labels }: { labels: { home: string; bills: string
     { href: "/more", label: labels.more, Icon: Menu, match: (p: string) => p.startsWith("/more") },
   ];
   return (
-    <nav aria-label="Main" className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)]">
+    <nav aria-label="Main" className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)] lg:hidden print:hidden">
       <ul className="mx-auto grid max-w-[560px] grid-cols-4">
         {items.map(({ href, label, Icon, match }) => {
           const active = match(path);
@@ -47,6 +47,30 @@ export function StaffTabs({ items }: { items: { href: string; label: string }[] 
             </li>
           );
         })}
+      </ul>
+    </nav>
+  );
+}
+
+export function ResidentSidebarNav({ labels }: { labels: { home: string; bills: string; complaints: string; more: string } }) {
+  const path = usePathname();
+  const items = [
+    { href: "/", label: labels.home, Icon: Home, active: path === "/" },
+    { href: "/bills", label: labels.bills, Icon: ReceiptText, active: /^\/(bills|pay|receipts)/.test(path) },
+    { href: "/complaints", label: labels.complaints, Icon: MessageSquareWarning, active: path.startsWith("/complaints") },
+    { href: "/more", label: labels.more, Icon: Menu, active: path.startsWith("/more") },
+  ];
+  return (
+    <nav aria-label="Main">
+      <ul className="space-y-1">
+        {items.map(({ href, label, Icon, active }) => (
+          <li key={href}>
+            <Link href={href} aria-current={active ? "page" : undefined} className={clsx("flex h-11 items-center gap-3 rounded-sm px-3 text-[15px] font-medium transition-colors", active ? "bg-ink text-on-ink" : "text-fg-2 hover:bg-surface-2 hover:text-fg")}>
+              <Icon size={19} strokeWidth={active ? 2.25 : 1.75} aria-hidden />
+              {label}
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

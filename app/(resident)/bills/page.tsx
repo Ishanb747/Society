@@ -27,6 +27,8 @@ export default async function Bills({ searchParams }: PageProps<"/bills">) {
       {payBanner === "failed" && <div className="mb-4"><Notice>The payment didn&apos;t go through and you haven&apos;t been charged. You can try again.</Notice></div>}
       {payBanner === "error" && <div className="mb-4"><Notice>We couldn&apos;t record that payment. Nothing was charged. Please try again.</Notice></div>}
 
+      <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-12">
+      <div>
       <Card>
         <p className="t-label text-fg-2">Total due</p>
         <p className="t-display tnum mt-3">{formatINR(account.totalDue)}</p>
@@ -61,7 +63,9 @@ export default async function Bills({ searchParams }: PageProps<"/bills">) {
         </ul>
       )}
 
-      <SectionTitle>Receipts</SectionTitle>
+      </div>
+      <div>
+      <SectionTitle className="lg:!mt-0">Receipts</SectionTitle>
       {payments.length === 0 ? (
         <EmptyState title="No payments yet" body="Receipts for your payments will show up here." />
       ) : (
@@ -96,6 +100,8 @@ export default async function Bills({ searchParams }: PageProps<"/bills">) {
             ))}
           </tbody>
         </table>
+      </div>
+      </div>
       </div>
     </div>
   );

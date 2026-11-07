@@ -21,7 +21,7 @@ export default async function Receipt({ params }: PageProps<"/receipts/[id]">) {
   const credit = lines.filter((l) => l.type === "CREDIT");
 
   return (
-    <div>
+    <div className="mx-auto w-full max-w-[640px]">
       <Link href="/bills" className="t-small link mb-4 inline-block text-fg-2 print:hidden">← Bills</Link>
       <Card className="print:border-0 print:p-0">
         <div className="flex items-start justify-between gap-4">

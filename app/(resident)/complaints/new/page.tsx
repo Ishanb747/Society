@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "New complaint" };
 export default async function NewComplaint() {
   const { flat } = await requireResident();
   return (
-    <div>
+    <div className="mx-auto w-full max-w-[640px]">
       <Link href="/complaints" className="t-small link mb-4 inline-block text-fg-2">← Complaints</Link>
       <PageHeader title="Raise a complaint" eyebrow={flat.id} />
       <ComplaintForm />

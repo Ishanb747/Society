@@ -18,7 +18,7 @@ export default async function Checkout({ params }: PageProps<"/pay/[id]">) {
   if (p.status === "FAILED") redirect("/bills?payment=failed");
 
   return (
-    <div>
+    <div className="mx-auto w-full max-w-[640px]">
       <PageHeader title="Checkout" eyebrow={flat.id} action={<Chip tone="warn">Test mode</Chip>} />
       <Card>
         <p className="t-label text-fg-2">You are paying</p>

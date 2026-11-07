@@ -4,13 +4,13 @@ import { requestOtp, verifyOtp, type LoginState } from "@/app/actions/auth";
 import { SubmitButton } from "./submit-button";
 import { Field, Notice, inputClass } from "./ui";
 
-export function LoginForm({ demoOtp }: { demoOtp: string }) {
+export function LoginForm({ demoOtp, defaultPhone }: { demoOtp: string; defaultPhone?: string }) {
   const [state, action] = useActionState(requestOtp, { step: "phone" } as LoginState);
   if (state.step === "otp" && state.phone) return <OtpStep phone={state.phone} demoOtp={demoOtp} />;
   return (
     <form action={action} className="space-y-5" noValidate>
       <Field label="Mobile number" htmlFor="phone" hint="The number linked to your flat" error={state.error}>
-        <input id="phone" name="phone" inputMode="numeric" autoComplete="tel" placeholder="98765 43210" className={inputClass} required />
+        <input id="phone" name="phone" inputMode="numeric" autoComplete="tel" placeholder="98765 43210" defaultValue={defaultPhone} key={defaultPhone} className={inputClass + " tnum"} required />
       </Field>
       <SubmitButton full pending="Sending…">Send code</SubmitButton>
     </form>

@@ -26,7 +26,7 @@ export default async function ComplaintDetail({ params }: PageProps<"/complaints
   const reportedBy = c._count.duplicates > 0 ? c._count.duplicates + 1 : c.parent ? c.parent._count.duplicates + 1 : 0;
 
   return (
-    <div>
+    <div className="mx-auto w-full max-w-[640px]">
       <Link href="/complaints" className="t-small link mb-4 inline-block text-fg-2">← Complaints</Link>
       <div className="flex items-center justify-between gap-3">
         <p className="t-label text-fg-3">#{c.seq} · {CATEGORY_LABEL[c.category as CategoryKey]} · {URGENCY_LABEL[c.urgency as UrgencyKey]}</p>

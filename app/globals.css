@@ -159,3 +159,7 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
+
+.capitalize-first::first-letter {
+  text-transform: uppercase;
+}

@@ -14,11 +14,11 @@ export interface FlatSnapshot {
   surnames: string[];
 }
 
-export interface Candidate {
+export type Candidate = {
   flatId: string;
   score: number;
   reasons: string[];
-}
+};
 
 export type MatchStatus = "AUTO_POSTED" | "REVIEW" | "UNMATCHED";
 

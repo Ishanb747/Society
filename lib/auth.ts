@@ -71,7 +71,7 @@ export const requireResident = cache(async () => {
 export const requireStaff = cache(async (area?: Area) => {
   const session = await getSession();
   if (!session) redirect("/login");
-  if (session.k === "resident") redirect("/");
+  if (session.k === "resident") redirect("/home");
   const staff = await db.staff.findUnique({ where: { id: session.id } });
   if (!staff) {
     await destroySession();

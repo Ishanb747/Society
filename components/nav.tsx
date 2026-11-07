@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 export function ResidentTabs({ labels }: { labels: { home: string; bills: string; complaints: string; more: string } }) {
   const path = usePathname();
   const items = [
-    { href: "/", label: labels.home, Icon: Home, match: (p: string) => p === "/" },
+    { href: "/home", label: labels.home, Icon: Home, match: (p: string) => p === "/home" },
     { href: "/bills", label: labels.bills, Icon: ReceiptText, match: (p: string) => p.startsWith("/bills") || p.startsWith("/pay") || p.startsWith("/receipts") },
     { href: "/complaints", label: labels.complaints, Icon: MessageSquareWarning, match: (p: string) => p.startsWith("/complaints") },
     { href: "/more", label: labels.more, Icon: Menu, match: (p: string) => p.startsWith("/more") },
@@ -55,7 +55,7 @@ export function StaffTabs({ items }: { items: { href: string; label: string }[] 
 export function ResidentSidebarNav({ labels }: { labels: { home: string; bills: string; complaints: string; more: string } }) {
   const path = usePathname();
   const items = [
-    { href: "/", label: labels.home, Icon: Home, active: path === "/" },
+    { href: "/home", label: labels.home, Icon: Home, active: path === "/home" },
     { href: "/bills", label: labels.bills, Icon: ReceiptText, active: /^\/(bills|pay|receipts)/.test(path) },
     { href: "/complaints", label: labels.complaints, Icon: MessageSquareWarning, active: path.startsWith("/complaints") },
     { href: "/more", label: labels.more, Icon: Menu, active: path.startsWith("/more") },

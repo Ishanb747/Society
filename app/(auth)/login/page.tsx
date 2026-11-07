@@ -22,7 +22,7 @@ const DEMO = [
 
 async function Content({ searchParams }: { searchParams: PageProps<"/login">["searchParams"] }) {
   const s = await getSession();
-  if (s) redirect(s.k === "staff" ? homeFor(s.role) : "/");
+  if (s) redirect(s.k === "staff" ? homeFor(s.role) : "/home");
   const raw = (await searchParams).phone;
   const phone = typeof raw === "string" && /^\d{10}$/.test(raw) ? raw : undefined;
 

@@ -12,7 +12,7 @@ function useSwitch() {
   const run = (formData: FormData) =>
     start(async () => {
       await switchFlat(formData);
-      router.push("/");
+      router.push("/home");
       router.refresh();
     });
   return { run, pending };

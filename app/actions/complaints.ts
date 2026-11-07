@@ -49,7 +49,7 @@ export async function submitComplaint(_: ComplaintFormState, formData: FormData)
   }
   const c = await createComplaint({ userId: user.id, flatId: flat.id, text: text.data, photoUrl });
   revalidatePath("/complaints");
-  revalidatePath("/");
+  revalidatePath("/home");
   redirect(`/complaints/${c.id}`);
 }
 

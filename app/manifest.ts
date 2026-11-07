@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Isocode Township",
     short_name: "Township",
     description: "Maintenance, complaints and payments for your township.",
-    start_url: "/",
+    start_url: "/home",
     display: "standalone",
     background_color: "#ffffff",
     theme_color: "#090a0a",

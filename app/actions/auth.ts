@@ -52,7 +52,7 @@ export async function verifyOtp(prev: LoginState, formData: FormData): Promise<L
     const m = await db.membership.findFirst({ where: { userId: user.id }, orderBy: { flatId: "asc" } });
     if (!m) return { step: "phone", error: "This number is not linked to a flat yet." };
     await createSession({ k: "resident", id: user.id, flat: m.flatId });
-    redirect("/");
+    redirect("/home");
   }
   return { step: "phone", error: "Could not sign you in." };
 }

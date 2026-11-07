@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/* Design tokens: see DESIGN.md */
+:root {
+  --surface-1: #ffffff;
+  --surface-2: #f7f7f7;
+  --surface-3: #ebebeb;
+  --ink-1: #090a0a;
+  --ink-2: #15191b;
+  --ink-3: #2d3235;
+
+  --text-1: #090a0a;
+  --text-2: #4e5a61;
+  --text-3: #8d969b;
+  --text-on-ink-1: #ffffff;
+  --text-on-ink-2: #b8bdc0;
+
+  --line-1: #ebebeb;
+  --line-2: #b8bdc0;
+
+  --accent: #002acf;
+  --accent-hover: #0022a6;
+  --accent-soft: #e8ecfb;
+
+  --ok: #047a35;
+  --ok-soft: #e6f4ec;
+  --warn: #9a5b00;
+  --warn-soft: #fbf1e1;
+  --danger: #c00000;
+  --danger-soft: #fbe9e9;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+@theme inline {
+  --color-surface: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-ink: var(--ink-1);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-fg: var(--text-1);
+  --color-fg-2: var(--text-2);
+  --color-fg-3: var(--text-3);
+  --color-on-ink: var(--text-on-ink-1);
+  --color-on-ink-2: var(--text-on-ink-2);
+  --color-line: var(--line-1);
+  --color-line-2: var(--line-2);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --font-sans: var(--font-inter), var(--font-devanagari), system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+html {
+  background: var(--surface-1);
+  color: var(--text-1);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 22px;
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Type scale */
+.t-display {
+  font-size: clamp(40px, 9vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.t-h1 {
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+.t-h2 {
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+.t-h3 {
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+.t-small {
+  font-size: 14px;
+  line-height: 20px;
+}
+.t-label {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Link underline that wipes in from the left and out to the right */
+.link {
+  background: linear-gradient(currentColor, currentColor) left bottom / 0% 1px no-repeat;
+  transition: background-size 500ms var(--ease-in);
+}
+.link:hover {
+  background-size: 100% 1px;
+  transition: background-size 280ms var(--ease-out);
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 37%, var(--surface-2) 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

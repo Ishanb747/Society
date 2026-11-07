@@ -1,0 +1,301 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum MembershipKind {
+  OWNER
+  TENANT
+  FAMILY
+}
+
+enum StaffRole {
+  HELPDESK
+  COMMITTEE
+  DUTY_MANAGER
+  TECHNICIAN
+}
+
+enum Category {
+  PLUMBING
+  ELECTRICAL
+  LIFT
+  SECURITY
+  HOUSEKEEPING
+  PEST
+  PARKING
+  NOISE
+  OTHER
+}
+
+enum Urgency {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum ClassifiedBy {
+  AI
+  RULE
+  FALLBACK
+  STAFF
+}
+
+enum ComplaintStatus {
+  NEW
+  ASSIGNED
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+  REOPENED
+}
+
+enum LedgerType {
+  BILL
+  LATE_FEE
+  PAYMENT
+  ADJUSTMENT
+  CREDIT
+}
+
+enum PaymentMethod {
+  UPI
+  NEFT
+  CHEQUE
+  GATEWAY
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+}
+
+enum PaymentSource {
+  GATEWAY
+  BANK
+}
+
+enum BankRowStatus {
+  AUTO_POSTED
+  REVIEW
+  UNMATCHED
+  POSTED
+  IGNORED
+}
+
+// A flat is identified by its human id, e.g. "T12-0408" (tower 12, flat 0408).
+model Flat {
+  id          String  @id
+  tower       Int
+  number      String
+  areaSqft    Int
+
+  memberships Membership[]
+  bills       Bill[]
+  ledger      LedgerEntry[]
+  payments    Payment[]
+  upiIds      KnownUpiId[]
+  complaints  Complaint[]
+  bankRows    BankRow[]
+
+  @@index([tower])
+}
+
+model User {
+  id          String  @id @default(cuid())
+  phone       String  @unique
+  name        String
+  locale      String  @default("en")
+
+  memberships Membership[]
+  complaints  Complaint[]
+}
+
+model Membership {
+  id      String         @id @default(cuid())
+  userId  String
+  flatId  String
+  kind    MembershipKind
+
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  flat    Flat @relation(fields: [flatId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, flatId])
+  @@index([flatId])
+}
+
+model Staff {
+  id         String     @id @default(cuid())
+  phone      String     @unique
+  name       String
+  role       StaffRole
+  skills     Category[]
+
+  assigned   Complaint[]
+  events     ComplaintEvent[]
+}
+
+model Bill {
+  id        String   @id @default(cuid())
+  flatId    String
+  period    String // "2026-11"
+  principal Int // rupees; area x rate
+  dueDate   DateTime
+  createdAt DateTime @default(now())
+
+  flat      Flat @relation(fields: [flatId], references: [id], onDelete: Cascade)
+
+  @@unique([flatId, period])
+  @@index([dueDate])
+}
+
+// Append-only. A flat's balance is always derived: sum(amount) where positive = owed.
+model LedgerEntry {
+  id        String     @id @default(cuid())
+  flatId    String
+  type      LedgerType
+  amount    Int // signed rupees: BILL/LATE_FEE > 0, PAYMENT/CREDIT < 0
+  period    String? // bill period this entry relates to
+  refType   String?
+  refId     String?
+  note      String?
+  createdAt DateTime   @default(now())
+
+  flat      Flat @relation(fields: [flatId], references: [id], onDelete: Cascade)
+
+  @@index([flatId, createdAt])
+}
+
+model Payment {
+  id        String        @id @default(cuid())
+  flatId    String
+  amount    Int
+  method    PaymentMethod
+  status    PaymentStatus @default(PENDING)
+  source    PaymentSource
+  utr       String?
+  receiptNo String?       @unique
+  paidAt    DateTime?
+  createdAt DateTime      @default(now())
+
+  flat      Flat @relation(fields: [flatId], references: [id], onDelete: Cascade)
+  bankRow   BankRow?
+
+  @@index([flatId])
+  @@index([utr])
+}
+
+model KnownUpiId {
+  id     String @id @default(cuid())
+  flatId String
+  vpa    String
+
+  flat   Flat @relation(fields: [flatId], references: [id], onDelete: Cascade)
+
+  @@unique([flatId, vpa])
+  @@index([vpa])
+}
+
+model BankImport {
+  id         String   @id @default(cuid())
+  fileName   String
+  fileHash   String   @unique
+  uploadedBy String
+  rowCount   Int
+  createdAt  DateTime @default(now())
+
+  rows       BankRow[]
+}
+
+model BankRow {
+  id              String        @id @default(cuid())
+  importId        String
+  rowHash         String        @unique
+  txnDate         DateTime
+  amount          Int
+  narration       String
+  utr             String?
+  vpa             String?
+  status          BankRowStatus
+  suggestedFlatId String?
+  score           Int           @default(0)
+  reasons         Json          @default("[]")
+  candidates      Json          @default("[]")
+  matchedFlatId   String?
+  paymentId       String?       @unique
+  resolvedBy      String?
+  resolvedAt      DateTime?
+
+  import          BankImport @relation(fields: [importId], references: [id], onDelete: Cascade)
+  flat            Flat?      @relation(fields: [matchedFlatId], references: [id])
+  payment         Payment?   @relation(fields: [paymentId], references: [id])
+
+  @@index([status])
+  @@index([importId])
+}
+
+model Complaint {
+  id              String          @id @default(cuid())
+  seq             Int             @unique @default(autoincrement())
+  flatId          String
+  raisedById      String
+  text            String
+  photoUrl        String?
+  category        Category
+  urgency         Urgency
+  aiCategory      Category?
+  aiUrgency       Urgency?
+  aiConfidence    Float?
+  classifiedBy    ClassifiedBy
+  needsReview     Boolean         @default(false)
+  safetyEscalated Boolean         @default(false)
+  assigneeId      String?
+  status          ComplaintStatus @default(NEW)
+  parentId        String?
+  dueBy           DateTime
+  firstResponseAt DateTime?
+  resolvedAt      DateTime?
+  rating          Int?
+  reopenCount     Int             @default(0)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  flat            Flat      @relation(fields: [flatId], references: [id], onDelete: Cascade)
+  raisedBy        User      @relation(fields: [raisedById], references: [id])
+  assignee        Staff?    @relation(fields: [assigneeId], references: [id])
+  parent          Complaint?  @relation("Duplicates", fields: [parentId], references: [id])
+  duplicates      Complaint[] @relation("Duplicates")
+  events          ComplaintEvent[]
+
+  @@index([status, urgency])
+  @@index([flatId])
+  @@index([category, createdAt])
+}
+
+model ComplaintEvent {
+  id          String   @id @default(cuid())
+  complaintId String
+  actorKind   String // RESIDENT | STAFF | SYSTEM | AI
+  actorStaffId String?
+  kind        String // CREATED | CLASSIFIED | ASSIGNED | STATUS | RECATEGORISED | LINKED | RATED | REOPENED | NOTE
+  note        String?
+  createdAt   DateTime @default(now())
+
+  complaint   Complaint @relation(fields: [complaintId], references: [id], onDelete: Cascade)
+  actorStaff  Staff?    @relation(fields: [actorStaffId], references: [id])
+
+  @@index([complaintId, createdAt])
+}
+
+model Notice {
+  id          String   @id @default(cuid())
+  title       String
+  body        String
+  publishedAt DateTime @default(now())
+}

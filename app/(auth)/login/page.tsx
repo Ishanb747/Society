@@ -29,7 +29,7 @@ async function Content({ searchParams }: { searchParams: PageProps<"/login">["se
   return (
     <main className="grid min-h-screen flex-1 lg:grid-cols-[minmax(420px,5fr)_6fr]">
       <section className="flex flex-col justify-between px-6 py-8 sm:px-12 lg:px-16 lg:py-12">
-        <span className="flex items-center gap-3"><Logo /><span className="font-semibold tracking-[-0.02em]">Isocode Township</span></span>
+        <span className="flex items-center gap-3"><Logo /><span className="font-semibold tracking-[-0.02em]">Sahyadri Greens</span></span>
         <div className="my-14 max-w-[400px] lg:my-0">
           <h1 className="t-display">Home, handled.</h1>
           <p className="mb-10 mt-5 text-[17px] leading-7 text-fg-2">Pay maintenance, raise complaints and follow them to the end. One app for all 2,400 flats.</p>

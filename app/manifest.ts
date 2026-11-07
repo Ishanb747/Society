@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Isocode Township",
+    name: "Sahyadri Greens",
     short_name: "Township",
     description: "Maintenance, complaints and payments for your township.",
     start_url: "/home",

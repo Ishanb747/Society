@@ -8,7 +8,7 @@ import { db } from "@/lib/db";
 import { fmtDateLong } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: { absolute: "Isocode Township: pay maintenance, raise complaints, stay informed" },
+  title: { absolute: "Sahyadri Greens: pay maintenance, raise complaints, stay informed" },
   description: "The resident portal for a 2,400-flat gated township in Pune. Pay maintenance, track complaints and read notices from your phone.",
 };
 
@@ -72,9 +72,9 @@ export default function Landing() {
     <div>
       <header className="sticky top-0 z-30 border-b border-line bg-surface/90 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 md:px-10">
-          <Link href="/" className="flex items-center gap-3" aria-label="Isocode Township home">
+          <Link href="/" className="flex items-center gap-3" aria-label="Sahyadri Greens home">
             <Logo size={32} />
-            <span className="font-semibold tracking-[-0.02em]">Isocode Township</span>
+            <span className="font-semibold tracking-[-0.02em]">Sahyadri Greens</span>
           </Link>
           <nav aria-label="Site" className="hidden items-center gap-8 md:flex">
             {NAV.map((n) => <a key={n.href} href={n.href} className="link t-small text-fg-2 hover:text-fg">{n.label}</a>)}
@@ -88,7 +88,7 @@ export default function Landing() {
         <section className="relative overflow-hidden bg-ink text-on-ink">
           <div aria-hidden className="pointer-events-none absolute -right-40 -top-40 h-[560px] w-[560px] rounded-full opacity-60" style={{ background: "radial-gradient(closest-side, rgba(0,42,207,.55), transparent)" }} />
           <div className="relative mx-auto max-w-[1200px] px-5 pb-20 pt-20 md:px-10 md:pb-32 md:pt-32">
-            <p className="t-label text-on-ink-2">Pune · 28 towers · 2,400 homes</p>
+            <p className="t-label text-on-ink-2">Sahyadri Greens · Pune · 28 towers · 2,400 homes</p>
             <h1 className="mt-6 max-w-[16ch] text-[clamp(44px,9vw,104px)] font-semibold leading-[0.95] tracking-[-0.05em]">Home, <span className="text-on-ink-2">run properly.</span></h1>
             <p className="mt-8 max-w-[52ch] text-[18px] leading-7 text-on-ink-2 md:text-[20px] md:leading-8">
               One place for your maintenance bill, your complaints and what the management office is up to. Built for residents, owners and tenants, on any phone.
@@ -193,7 +193,7 @@ export default function Landing() {
 
       <footer className="border-t border-line">
         <div className="mx-auto flex max-w-[1200px] flex-col gap-4 px-5 py-10 text-fg-2 md:flex-row md:items-center md:justify-between md:px-10">
-          <span className="flex items-center gap-3"><Logo size={28} /><span className="font-medium text-fg">Isocode Township</span></span>
+          <span className="flex items-center gap-3"><Logo size={28} /><span className="font-medium text-fg">Sahyadri Greens</span></span>
           <p className="t-small">Management office, Pune. Demo portal: all people and numbers shown are made up.</p>
           <Link href="/login" className="link t-small">Sign in</Link>
         </div>

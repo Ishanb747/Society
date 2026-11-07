@@ -11,9 +11,9 @@ const devanagari = Noto_Sans_Devanagari({
 });
 
 export const metadata: Metadata = {
-  appleWebApp: { capable: true, title: "Township", statusBarStyle: "black-translucent" },
+  appleWebApp: { capable: true, title: "Sahyadri", statusBarStyle: "black-translucent" },
   icons: { apple: "/icons/apple-touch-icon.png" },
-  title: { default: "Isocode Township", template: "%s · Isocode Township" },
+  title: { default: "Sahyadri Greens", template: "%s · Sahyadri Greens" },
   description: "Maintenance, complaints and payments for a gated township, in one app.",
 };
 

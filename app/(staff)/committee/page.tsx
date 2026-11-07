@@ -35,15 +35,15 @@ export default async function Committee() {
 
   return (
     <div>
-      <header className="-mx-5 mb-8 bg-ink px-5 py-8 text-on-ink md:-mx-10 md:px-10">
-        <div className="mx-auto flex max-w-[1200px] flex-wrap items-end justify-between gap-4">
+      <header className="mb-8 rounded-md bg-ink px-5 py-8 text-on-ink md:px-10">
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="t-label text-on-ink-2">Committee report · {d.flats === 0 ? "" : `${d.flats} flats in this sample`}</p>
             <h1 className="t-h1 mt-2">{d.current ? fmtMonth(d.current) : "No bills yet"}</h1>
           </div>
           <div className="flex gap-3 print:hidden">
             <a href="/committee/export" className={buttonClass({ variant: "outline", small: true }) + " !border-on-ink !bg-transparent !text-on-ink hover:!bg-on-ink/10"}>Download CSV</a>
-            <div className="w-44"><PrintButton /></div>
+            <div className="w-60"><PrintButton /></div>
           </div>
         </div>
       </header>

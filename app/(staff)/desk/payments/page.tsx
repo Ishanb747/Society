@@ -25,10 +25,9 @@ export default async function Payments() {
 
   const rows: RowView[] = queue.map((r) => {
     const cands = r.candidates as Candidate[];
-    const best = cands.find((c) => c.flatId === r.suggestedFlatId);
     return {
       id: r.id, date: fmtDate(r.txnDate), amount: r.amount, narration: r.narration, status: r.status as "REVIEW" | "UNMATCHED",
-      reasons: r.status === "UNMATCHED" ? (r.reasons as string[]).slice(0, 1) : (best?.reasons ?? (r.reasons as string[])),
+      reasons: r.status === "UNMATCHED" ? (r.reasons as string[]).slice(0, 1) : (r.reasons as string[]),
       suggested: r.suggestedFlatId ? { flatId: r.suggestedFlatId, who: who(r.suggestedFlatId) } : null,
       others: cands.filter((c) => c.flatId !== r.suggestedFlatId).map((c) => ({ flatId: c.flatId, who: who(c.flatId), score: c.score })),
     };

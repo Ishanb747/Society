@@ -10,7 +10,7 @@ async function Shell({ children }: { children: React.ReactNode }) {
   const t = translator(await getLang());
   return (
     <>
-      <header className="mx-auto flex max-w-[560px] items-center justify-between px-5 pt-5">
+      <header className="mx-auto flex w-full max-w-[560px] items-center justify-between px-5 pt-5 print:hidden">
         <p className="t-label text-fg-2">Isocode Township</p>
         {memberships.length > 1 ? (
           <FlatDropdown flats={memberships.map((m) => ({ flatId: m.flatId, area: m.flat.areaSqft }))} current={flat.id} />

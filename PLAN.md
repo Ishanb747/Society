@@ -1,6 +1,6 @@
 # Build plan: township resident app
 
-Brief: [readme.md](readme.md) (problem 3, gated township). **Deadline: 9 Nov 2026, 11:59 pm IST.**
+Brief: [docs/brief.md](docs/brief.md) (problem 3, gated township). **Deadline: 9 Nov 2026, 11:59 pm IST.**
 Ship the CORE BUILD slice only, end to end, deployed from the first hour.
 
 ## Scope

@@ -50,3 +50,28 @@ export function CountUp({ to, suffix = "", className }: { to: number; suffix?: s
   }, [to]);
   return <span ref={ref} className={className}>{v.toLocaleString("en-IN")}{suffix}</span>;
 }
+
+/** Inertial smooth scrolling for the public site only. Skipped for reduced-motion users and touch devices keep native momentum. */
+export function SmoothScroll() {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    let lenis: import("lenis").default | undefined;
+    let dead = false;
+    import("lenis").then(({ default: Lenis }) => {
+      if (dead) return;
+      lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 0.95, anchors: { offset: -64 } });
+      const loop = (t: number) => {
+        lenis?.raf(t);
+        raf = requestAnimationFrame(loop);
+      };
+      raf = requestAnimationFrame(loop);
+    });
+    return () => {
+      dead = true;
+      cancelAnimationFrame(raf);
+      lenis?.destroy();
+    };
+  }, []);
+  return null;
+}

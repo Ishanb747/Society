@@ -196,3 +196,8 @@ body {
   .rv-pre { opacity: 1; transform: none; }
   .marquee, .orb { animation: none; }
 }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }

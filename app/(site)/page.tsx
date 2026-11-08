@@ -3,7 +3,7 @@ import { ArrowRight, Banknote, BellRing, Languages, MessageSquareWarning, Receip
 import Link from "next/link";
 import { connection } from "next/server";
 import { Suspense } from "react";
-import { CountUp, ScrollReveal } from "@/components/motion";
+import { CountUp, ScrollReveal, SmoothScroll } from "@/components/motion";
 import { Logo, Skeleton, buttonClass } from "@/components/ui";
 import { db } from "@/lib/db";
 import { fmtDateLong } from "@/lib/format";
@@ -72,6 +72,7 @@ export default function Landing() {
   return (
     <div>
       <ScrollReveal />
+      <SmoothScroll />
       <header className="sticky top-0 z-30 border-b border-line bg-surface/90 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 md:px-10">
           <Link href="/" className="flex items-center gap-3" aria-label="Sahyadri Greens home">
@@ -125,7 +126,7 @@ export default function Landing() {
         </div>
 
         {/* Residents */}
-        <section id="residents" className="mx-auto max-w-[1200px] scroll-mt-16 px-5 py-20 md:px-10 md:py-32">
+        <section id="residents" className="mx-auto max-w-[1200px] px-5 py-20 md:px-10 md:py-32">
           <p className="t-label text-fg-3">For residents</p>
           <h2 data-reveal className="mt-4 max-w-[20ch] text-[clamp(32px,5vw,56px)] font-semibold leading-[1.02] tracking-[-0.04em]">Everything about your flat, in your pocket.</h2>
           <div className="mt-14 grid gap-px overflow-hidden rounded-md border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
@@ -156,7 +157,7 @@ export default function Landing() {
         </section>
 
         {/* Office */}
-        <section id="office" className="mx-auto max-w-[1200px] scroll-mt-16 px-5 py-20 md:px-10 md:py-32">
+        <section id="office" className="mx-auto max-w-[1200px] px-5 py-20 md:px-10 md:py-32">
           <p className="t-label text-fg-3">Management office</p>
           <h2 data-reveal className="mt-4 max-w-[22ch] text-[clamp(32px,5vw,56px)] font-semibold leading-[1.02] tracking-[-0.04em]">Fewer spreadsheets. Fewer phone calls.</h2>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
@@ -172,7 +173,7 @@ export default function Landing() {
         </section>
 
         {/* Notices */}
-        <section id="notices" className="mx-auto max-w-[1200px] scroll-mt-16 px-5 pb-20 md:px-10 md:pb-32">
+        <section id="notices" className="mx-auto max-w-[1200px] px-5 pb-20 md:px-10 md:pb-32">
           <p className="t-label text-fg-3">Notices</p>
           <h2 data-reveal className="mb-10 mt-4 text-[clamp(28px,4vw,44px)] font-semibold leading-[1.05] tracking-[-0.04em]">Latest from the management office</h2>
           <Suspense fallback={<div className="space-y-4"><Skeleton className="h-16 w-full" /><Skeleton className="h-16 w-full" /></div>}>
@@ -181,7 +182,7 @@ export default function Landing() {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="bg-surface-2 scroll-mt-16">
+        <section id="faq" className="bg-surface-2">
           <div className="mx-auto grid max-w-[1200px] gap-10 px-5 py-20 md:grid-cols-[1fr_2fr] md:px-10 md:py-28">
             <h2 className="text-[clamp(28px,4vw,44px)] font-semibold leading-[1.05] tracking-[-0.04em]">Questions</h2>
             <div className="divide-y divide-line-2 border-y border-line-2">

@@ -8,7 +8,7 @@ A resident app and back office for a 2,400-flat gated township in Pune: maintena
 
 Built for the Isocode take-home, problem 3. Brief: [docs/brief.md](docs/brief.md). Plan: [PLAN.md](PLAN.md). Visual system: [DESIGN.md](DESIGN.md). Run and deploy details: [deployment.md](deployment.md).
 
-Repository: https://github.com/Ishanb747/Society
+Live: https://society-weld.vercel.app · Repository: https://github.com/Ishanb747/Society
 
 ## Demo logins
 

@@ -1,5 +1,8 @@
 # Deployment
 
+Live app: https://society-weld.vercel.app (health check: `/api/health`)  
+Code: https://github.com/Ishanb747/Society
+
 ## Run it locally
 
 Needs Node 20+ and a Postgres database (a free [Neon](https://neon.com) project works).
@@ -35,7 +38,7 @@ Names only. Never commit values.
 ## How it is deployed
 
 - **App**: Vercel, imported from the GitHub repo. Every push to `main` deploys.
-- **Database**: Neon Postgres (project `little-bar-84960437`, branch `production`).
+- **Database**: Neon Postgres (one project, branch `production`).
 - **Build command** (already in `package.json`): `prisma generate && prisma migrate deploy && prisma db seed && next build`. So each deploy applies migrations and **resets the demo data**, which keeps the sample data fresh and dated relative to the day of the deploy.
 - Set the four variables above in Vercel → Project → Settings → Environment Variables.
 - Put the Vercel function region close to the database (Neon here is in `us-east-2`, so `iad1`).

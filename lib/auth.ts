@@ -61,8 +61,7 @@ export const requireResident = cache(async () => {
   });
   const membership = user?.memberships.find((m) => m.flatId === session.flat);
   if (!user || !membership) {
-    await destroySession();
-    redirect("/login");
+    redirect("/api/session/clear");
   }
   return { user, flat: membership.flat, membership, memberships: user.memberships };
 });
@@ -74,8 +73,7 @@ export const requireStaff = cache(async (area?: Area) => {
   if (session.k === "resident") redirect("/home");
   const staff = await db.staff.findUnique({ where: { id: session.id } });
   if (!staff) {
-    await destroySession();
-    redirect("/login");
+    redirect("/api/session/clear");
   }
   if (area && !staffCan(staff.role, area)) redirect(homeFor(staff.role));
   return staff;

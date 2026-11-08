@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Building2, ReceiptText, ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { LoginForm } from "@/components/login-form";
@@ -27,33 +26,33 @@ async function Content({ searchParams }: { searchParams: PageProps<"/login">["se
         <p className="t-small text-fg-3">Resident data is personal data under the DPDP Act 2023 and is only used to run your society.</p>
       </section>
 
-      <aside className="bg-ink px-6 py-10 text-on-ink bg-[radial-gradient(90%_70%_at_100%_0%,#14224f_0%,#090a0a_60%)] sm:px-12 lg:px-16 lg:py-12">
-        <dl className="grid max-w-[560px] grid-cols-3 gap-6 border-b border-on-ink/15 pb-8">
-          {[["2,400", "flats", Building2], ["28", "towers", ShieldCheck], ["₹22 cr", "billed a year", ReceiptText]].map(([n, l, Icon]) => {
-            const I = Icon as typeof Building2;
-            return (
-              <div key={l as string}>
-                <I size={18} className="mb-4 text-on-ink-2" aria-hidden />
-                <dt className="sr-only">{l as string}</dt>
-                <dd className="tnum text-[28px] font-semibold leading-8 tracking-[-0.03em]">{n as string}</dd>
-                <p className="t-small mt-1 text-on-ink-2">{l as string}</p>
-              </div>
-            );
-          })}
-        </dl>
+      <aside className="relative flex flex-col justify-between gap-16 overflow-hidden bg-ink bg-[radial-gradient(90%_70%_at_100%_0%,#14224f_0%,#090a0a_60%)] px-6 py-12 text-on-ink sm:px-12 lg:min-h-screen lg:px-16 lg:py-12">
+        <p className="t-label text-on-ink-2">Sahyadri Greens · Pune</p>
 
-        <ul className="mt-8 grid max-w-[560px] gap-5">
-          {[
-            ["Pay maintenance in two taps", "See exactly what you owe and get a receipt straight away."],
-            ["Raise a complaint, follow it to the end", "Urgent issues like gas or a stuck lift go straight to the duty manager."],
-            ["Notices from the management office", "Water shut-offs, servicing and committee decisions in one place."],
-          ].map(([t, d]) => (
-            <li key={t} className="border-t border-on-ink/15 pt-4">
-              <p className="font-medium">{t}</p>
-              <p className="t-small mt-1 text-on-ink-2">{d}</p>
-            </li>
+        <div>
+          <h2 className="max-w-[14ch] text-[clamp(36px,4.2vw,64px)] font-semibold leading-[1] tracking-[-0.045em]">Everything about your flat, <span className="text-on-ink-2">in one place.</span></h2>
+          <ul className="mt-12 grid max-w-[520px] gap-0">
+            {[
+              ["Pay maintenance in two taps", "See exactly what you owe and get a receipt straight away."],
+              ["Raise a complaint, follow it to the end", "Urgent issues like gas or a stuck lift go straight to the duty manager."],
+              ["Notices from the management office", "Water shut-offs, servicing and committee decisions."],
+            ].map(([t, d]) => (
+              <li key={t} className="border-t border-on-ink/15 py-4 last:border-b">
+                <p className="font-medium">{t}</p>
+                <p className="t-small mt-1 text-on-ink-2">{d}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <dl className="grid max-w-[520px] grid-cols-3 gap-6">
+          {[["2,400", "flats"], ["28", "towers"], ["₹22 cr", "billed a year"]].map(([n, l]) => (
+            <div key={l} className="flex flex-col-reverse">
+              <dt className="t-small mt-1 text-on-ink-2">{l}</dt>
+              <dd className="tnum text-[32px] font-semibold leading-9 tracking-[-0.04em]">{n}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </aside>
     </main>
   );

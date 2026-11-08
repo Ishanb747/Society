@@ -42,7 +42,7 @@ Names only. Never commit values.
 
 ## Demo logins
 
-There is no SMS. Every account uses the demo code **123456**, shown on the sign-in screen. All phone numbers are made up.
+The app itself shows no demo hints. There is no SMS: every account uses the code **123456**. All phone numbers and people are made up. Tip: `/login?phone=9000000002` pre-fills the number.
 
 | Role | Phone | Notes |
 |---|---|---|
@@ -57,8 +57,8 @@ There is no SMS. Every account uses the demo code **123456**, shown on the sign-
 
 ## A five-minute tour for a reviewer
 
-0. Open the site root: a public landing page with the live notices, then **Sign in**.
-1. Sign in as **Swati** → home shows what is due and the open complaint → **Pay now** → checkout (test mode) → receipt → Bills shows the ledger.
+0. Open the site root (the public landing page with live notices), then **Sign in**.
+1. Sign in as **Swati** → home shows what is due and the open complaint → **Pay now** → checkout → receipt (the checkout page has a small "Test gateway: simulate a failed payment" link to try the failure path) → Bills shows the ledger.
 2. Still as Swati → **Complaints → New** → type "smell of gas near the staircase". The safety hint appears while typing; after sending, it is marked critical and escalated.
 3. Sign in as the **help desk** → the gas complaint is pinned on top → open "Needs review" and change a category in one tap → open the lift outage (nine flats, one linked group).
 4. Help desk → **Payments** → download the sample statement (also at `/samples/bank-statement.csv`) → upload it. Six rows post automatically, five wait for review, four are unmatched, one duplicate and two debits are skipped. Upload it again: nothing posts twice.

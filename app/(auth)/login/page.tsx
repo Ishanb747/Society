@@ -1,24 +1,13 @@
 import type { Metadata } from "next";
 import { Building2, ReceiptText, ShieldCheck } from "lucide-react";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { LoginForm } from "@/components/login-form";
-import { Avatar, Logo } from "@/components/ui";
+import { Logo } from "@/components/ui";
 import { homeFor } from "@/lib/access";
 import { getSession } from "@/lib/auth";
-import { DEMO_OTP } from "@/lib/constants";
 
 export const metadata: Metadata = { title: "Sign in" };
-
-const DEMO = [
-  { who: "Resident, paid up", name: "Neeraj Kulkarni", phone: "9000000001" },
-  { who: "Tenant, overdue, open complaint", name: "Swati Joshi", phone: "9000000002" },
-  { who: "Resident, part paid", name: "Aamir Shaikh", phone: "9000000003" },
-  { who: "Owns two flats", name: "Meera Kapoor", phone: "9000000004" },
-  { who: "Help desk and accounts", name: "Anita Deshmukh", phone: "9000000010" },
-  { who: "Committee", name: "Rajan Phadke", phone: "9000000020" },
-];
 
 async function Content({ searchParams }: { searchParams: PageProps<"/login">["searchParams"] }) {
   const s = await getSession();
@@ -33,7 +22,7 @@ async function Content({ searchParams }: { searchParams: PageProps<"/login">["se
         <div className="my-14 max-w-[400px] lg:my-0">
           <h1 className="t-display">Home, handled.</h1>
           <p className="mb-10 mt-5 text-[17px] leading-7 text-fg-2">Pay maintenance, raise complaints and follow them to the end. One app for all 2,400 flats.</p>
-          <LoginForm demoOtp={DEMO_OTP} defaultPhone={phone} />
+          <LoginForm defaultPhone={phone} />
         </div>
         <p className="t-small text-fg-3">Resident data is personal data under the DPDP Act 2023 and is only used to run your society.</p>
       </section>
@@ -53,21 +42,18 @@ async function Content({ searchParams }: { searchParams: PageProps<"/login">["se
           })}
         </dl>
 
-        <p className="t-label mb-4 mt-8 text-on-ink-2">Try a demo account · code {DEMO_OTP}</p>
-        <ul className="grid max-w-[560px] gap-2 sm:grid-cols-2">
-          {DEMO.map((d) => (
-            <li key={d.phone}>
-              <Link href={`/login?phone=${d.phone}`} className={`flex items-center gap-3 rounded-md border p-3.5 transition-colors hover:border-on-ink/60 hover:bg-on-ink/5 ${phone === d.phone ? "border-on-ink bg-on-ink/10" : "border-on-ink/15"}`}>
-                <Avatar name={d.name} size={38} />
-                <span className="min-w-0">
-                  <span className="block truncate text-[15px] font-medium">{d.name}</span>
-                  <span className="t-small block truncate text-on-ink-2">{d.who}</span>
-                </span>
-              </Link>
+        <ul className="mt-8 grid max-w-[560px] gap-5">
+          {[
+            ["Pay maintenance in two taps", "See exactly what you owe and get a receipt straight away."],
+            ["Raise a complaint, follow it to the end", "Urgent issues like gas or a stuck lift go straight to the duty manager."],
+            ["Notices from the management office", "Water shut-offs, servicing and committee decisions in one place."],
+          ].map(([t, d]) => (
+            <li key={t} className="border-t border-on-ink/15 pt-4">
+              <p className="font-medium">{t}</p>
+              <p className="t-small mt-1 text-on-ink-2">{d}</p>
             </li>
           ))}
         </ul>
-        <p className="t-small mt-6 max-w-[560px] text-on-ink-2">Pick one to fill the number, then press Send code. No SMS is sent in demo mode.</p>
       </aside>
     </main>
   );

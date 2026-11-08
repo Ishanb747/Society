@@ -163,3 +163,36 @@ body {
 .capitalize-first::first-letter {
   text-transform: uppercase;
 }
+
+/* Landing page motion */
+@keyframes rise {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, 50px) scale(1.12); }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.mask { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.mask > span { display: inline-block; animation: rise 1100ms var(--ease-out) both; animation-delay: var(--d, 0ms); }
+.enter { animation: fade-up 900ms var(--ease-out) both; animation-delay: var(--d, 0ms); }
+.orb { animation: drift 18s ease-in-out infinite; }
+.marquee { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+.rv-pre { opacity: 0; transform: translateY(28px); }
+.rv-pre.rv-in { opacity: 1; transform: none; transition: opacity 900ms var(--ease-out), transform 900ms var(--ease-out); transition-delay: var(--d, 0ms); }
+.lift { transition: background 300ms var(--ease-out); }
+.lift:hover { background: var(--surface-2); }
+.arrow-nudge svg { transition: transform 300ms var(--ease-out); }
+.arrow-nudge:hover svg { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) {
+  .rv-pre { opacity: 1; transform: none; }
+  .marquee, .orb { animation: none; }
+}

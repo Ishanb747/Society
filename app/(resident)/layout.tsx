@@ -20,8 +20,8 @@ async function Shell({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-3 px-1 pb-8 pt-1">
             <Logo />
             <div className="leading-tight">
-              <p className="font-semibold tracking-[-0.02em]">Sahyadri</p>
-              <p className="t-small text-fg-3">Greens</p>
+              <p className="font-semibold tracking-[-0.02em]">Society</p>
+              <p className="t-small text-fg-3">Township</p>
             </div>
           </div>
           <div className="mb-6 flex items-center gap-3 rounded-md border border-line bg-surface p-3">
@@ -49,7 +49,7 @@ async function Shell({ children }: { children: React.ReactNode }) {
       <div className="min-w-0">
         {/* Mobile header */}
         <header className="mx-auto flex w-full max-w-[560px] items-center justify-between px-5 pt-5 lg:hidden print:hidden">
-          <span className="flex items-center gap-2.5"><Logo size={30} /><span className="t-label text-fg-2">Sahyadri Greens</span></span>
+          <span className="flex items-center gap-2.5"><Logo size={30} /><span className="t-label text-fg-2">Society</span></span>
           {memberships.length > 1 ? <FlatDropdown flats={flats} current={flat.id} /> : <p className="t-label text-fg-2">{flat.id}</p>}
         </header>
         <main className="mx-auto w-full max-w-[560px] px-5 pb-28 pt-4 lg:max-w-[1080px] lg:px-12 lg:pb-16 lg:pt-10" data-user={user.id}>

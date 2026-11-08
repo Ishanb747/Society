@@ -11,9 +11,9 @@ const devanagari = Noto_Sans_Devanagari({
 });
 
 export const metadata: Metadata = {
-  appleWebApp: { capable: true, title: "Sahyadri", statusBarStyle: "black-translucent" },
+  appleWebApp: { capable: true, title: "Society", statusBarStyle: "black-translucent" },
   icons: { apple: "/icons/apple-touch-icon.png" },
-  title: { default: "Sahyadri Greens", template: "%s · Sahyadri Greens" },
+  title: { default: "Society", template: "%s · Society" },
   description: "Maintenance, complaints and payments for a gated township, in one app.",
 };
 

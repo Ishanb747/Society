@@ -9,7 +9,7 @@ import { db } from "@/lib/db";
 import { fmtDateLong } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: { absolute: "Sahyadri Greens: pay maintenance, raise complaints, stay informed" },
+  title: { absolute: "Society: pay maintenance, raise complaints, stay informed" },
   description: "The resident portal for a 2,400-flat gated township in Pune. Pay maintenance, track complaints and read notices from your phone.",
 };
 
@@ -75,9 +75,9 @@ export default function Landing() {
       <SmoothScroll />
       <header className="sticky top-0 z-30 border-b border-line bg-surface/90 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 md:px-10">
-          <Link href="/" className="flex items-center gap-3" aria-label="Sahyadri Greens home">
+          <Link href="/" className="flex items-center gap-3" aria-label="Society home">
             <Logo size={32} />
-            <span className="font-semibold tracking-[-0.02em]">Sahyadri Greens</span>
+            <span className="font-semibold tracking-[-0.02em]">Society</span>
           </Link>
           <nav aria-label="Site" className="hidden items-center gap-8 md:flex">
             {NAV.map((n) => <a key={n.href} href={n.href} className="link t-small text-fg-2 hover:text-fg">{n.label}</a>)}
@@ -91,7 +91,7 @@ export default function Landing() {
         <section className="relative overflow-hidden bg-ink text-on-ink">
           <div aria-hidden className="orb pointer-events-none absolute -right-40 -top-40 h-[560px] w-[560px] rounded-full opacity-60" style={{ background: "radial-gradient(closest-side, rgba(0,42,207,.55), transparent)" }} />
           <div className="relative mx-auto max-w-[1200px] px-5 pb-20 pt-20 md:px-10 md:pb-32 md:pt-32">
-            <p className="t-label enter text-on-ink-2">Sahyadri Greens · Pune · 28 towers · 2,400 homes</p>
+            <p className="t-label enter text-on-ink-2">Society · Pune · 28 towers · 2,400 homes</p>
             <h1 className="mt-6 max-w-[16ch] text-[clamp(44px,9vw,104px)] font-semibold leading-[0.95] tracking-[-0.05em]"><span className="mask"><span style={{ "--d": "100ms" } as React.CSSProperties}>Home,</span></span>{" "}<span className="mask text-on-ink-2"><span style={{ "--d": "220ms" } as React.CSSProperties}>run</span></span>{" "}<span className="mask text-on-ink-2"><span style={{ "--d": "340ms" } as React.CSSProperties}>properly.</span></span></h1>
             <p style={{ "--d": "550ms" } as React.CSSProperties} className="enter mt-8 max-w-[52ch] text-[18px] leading-7 text-on-ink-2 md:text-[20px] md:leading-8">
               One place for your maintenance bill, your complaints and what the management office is up to. Built for residents, owners and tenants, on any phone.
@@ -210,8 +210,8 @@ export default function Landing() {
 
       <footer className="border-t border-line">
         <div className="mx-auto flex max-w-[1200px] flex-col gap-4 px-5 py-10 text-fg-2 md:flex-row md:items-center md:justify-between md:px-10">
-          <span className="flex items-center gap-3"><Logo size={28} /><span className="font-medium text-fg">Sahyadri Greens</span></span>
-          <p className="t-small">Sahyadri Greens Management Office, Pune.</p>
+          <span className="flex items-center gap-3"><Logo size={28} /><span className="font-medium text-fg">Society</span></span>
+          <p className="t-small">Society management office, Pune.</p>
           <Link href="/login" className="link t-small">Sign in</Link>
         </div>
       </footer>

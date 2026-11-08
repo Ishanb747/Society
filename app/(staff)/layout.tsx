@@ -19,7 +19,7 @@ async function Shell({ children }: { children: React.ReactNode }) {
       <div className="bg-ink text-on-ink">
         <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 pt-4 md:px-10 md:pb-4">
           <div className="flex items-baseline gap-3">
-            <p className="t-label text-on-ink-2">Sahyadri Greens</p>
+            <p className="t-label text-on-ink-2">Society</p>
             <p className="t-label text-on-ink-2">· {ROLE_LABEL[staff.role]}</p>
           </div>
           <form action={signOut}>

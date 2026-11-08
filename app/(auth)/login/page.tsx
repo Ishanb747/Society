@@ -17,7 +17,7 @@ async function Content({ searchParams }: { searchParams: PageProps<"/login">["se
   return (
     <main className="grid min-h-screen flex-1 lg:grid-cols-[minmax(420px,5fr)_6fr]">
       <section className="flex flex-col justify-between px-6 py-8 sm:px-12 lg:px-16 lg:py-12">
-        <span className="flex items-center gap-3"><Logo /><span className="font-semibold tracking-[-0.02em]">Sahyadri Greens</span></span>
+        <span className="flex items-center gap-3"><Logo /><span className="font-semibold tracking-[-0.02em]">Society</span></span>
         <div className="my-14 max-w-[400px] lg:my-0">
           <h1 className="t-display">Home, handled.</h1>
           <p className="mb-10 mt-5 text-[17px] leading-7 text-fg-2">Pay maintenance, raise complaints and follow them to the end. One app for all 2,400 flats.</p>
@@ -27,7 +27,7 @@ async function Content({ searchParams }: { searchParams: PageProps<"/login">["se
       </section>
 
       <aside className="relative flex flex-col justify-between gap-16 overflow-hidden bg-ink bg-[radial-gradient(90%_70%_at_100%_0%,#14224f_0%,#090a0a_60%)] px-6 py-12 text-on-ink sm:px-12 lg:min-h-screen lg:px-16 lg:py-12">
-        <p className="t-label text-on-ink-2">Sahyadri Greens · Pune</p>
+        <p className="t-label text-on-ink-2">Society · Pune</p>
 
         <div>
           <h2 className="max-w-[14ch] text-[clamp(36px,4.2vw,64px)] font-semibold leading-[1] tracking-[-0.045em]">Everything about your flat, <span className="text-on-ink-2">in one place.</span></h2>

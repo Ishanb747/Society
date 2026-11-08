@@ -1,4 +1,4 @@
-# Sahyadri Greens
+# Society
 
 A resident app and back office for a 2,400-flat gated township: maintenance bills and payments,
 complaints with AI triage, bank statement matching, and a monthly committee report.
